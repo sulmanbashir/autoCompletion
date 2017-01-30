@@ -1,0 +1,58 @@
+#include "autoCompletion.h"
+
+int	first_step(char *str, llist liste)
+{
+  element	*i = liste;
+  char	test[2];
+
+  while (i != NULL)
+    {
+      if (str[0] >= 97 && str[0] <= 122)
+	str[0] = str[0] - 32;
+      if (str[0] == i->ville[0])
+	{
+	  test[0] = i->ville[0];
+	  test[1] = i->ville[1];
+	  //	  i = i->nxt;
+	}
+      while (test[0] == i->ville[0] && test[1] == i->ville[1])
+	{
+	  //	  test = test;
+	  i = i->nxt;
+	}
+      printf("%s ", test); 
+      i = i->nxt;
+    }
+}
+
+int	gps(char *str, llist liste)
+{
+  element	*i = liste;
+  char	*test = malloc(sizeof(char) * 10);
+  int	j;
+
+  first_step(str, liste);
+  //  view(liste);
+}
+
+int	start(llist liste, llist_proba liste_proba)
+{
+  int	j;
+  char	*buffer;
+  int	size;
+
+  if ((buffer = malloc(sizeof(char) * 1024)) == NULL)
+    {
+      printf("\nError in Malloc() for the buffer\n");
+      return (0);
+    }
+  first_suggestion(liste_proba);
+  //  while (42)
+  //{
+      size = read(0, buffer, 1024);
+      buffer[size -1] = '\0';
+      gps(buffer, liste);
+      //      printf("%s\n", buffer);
+      //j++;
+      //}
+}
